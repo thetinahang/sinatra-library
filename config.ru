@@ -7,5 +7,5 @@ end
 use Rack::MethodOverride
 use BooksController
 use LoansController
-use BorrrowersController
+use BorrowersController
 run ApplicationController

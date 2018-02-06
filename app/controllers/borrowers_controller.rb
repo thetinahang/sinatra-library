@@ -1,27 +1,28 @@
 class BorrowersController < ApplicationController
-	get '/borrowers' do
-		@borrowers = Borrower.all
-		erb :"/borrowers/borrowers"
-	end
-
 #	get '/borrowers/:slug' do
 #		@borrower = Borrower.find_by_slug(params[:slug])
 #		erb :'/borrowers/show'
 #	end
 
-	get '/borrower_form' do
-		@books = Book.all
-		erb :"borrowers/create_borrower"
+	get '/borrowers/signup' do
+		if logged_in?
+			flash[:message] = "You are logged in!"
+			redirect "borrowers/#{current_borrower.slug}"
+		else 
+			erb :"borrowers/new"
+		end 
 	end
 
-	post '/borrower_form' do
+	get '/borrowers' do
+		@borrowers = Borrower.all
+		erb :"/borrowers/index"
+	end
+
+	post '/borrowers' do
 		if params[:first_name] == "" || params[:last_name] == "" || params[:email] == ""
-			redirect to "/borrower_form"
+			redirect to "borrowers/new"
 		else
 			@borrower = Borrower.create(params[:borrower])
-			if !params[:book].empty?
-  				@borrower.books << Book.create(params[:book])
-			end
 			@borrower.save
 			redirect to "/borrowers"
 		end
