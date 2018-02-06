@@ -5,6 +5,7 @@ if ActiveRecord::Migrator.needs_migration?
 end
 
 use Rack::MethodOverride
-#use TweetsController
-#use UsersController
-#run ApplicationController
+use BooksController
+use LoansController
+use BorrrowersController
+run ApplicationController
