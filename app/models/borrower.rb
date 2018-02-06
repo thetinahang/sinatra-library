@@ -7,7 +7,7 @@ class Borrower < ActiveRecord::Base
 	end
 
 	def self.find_by_slug(slug)
-		User.all.find{|user| user.slug == slug}
+		Borrower.all.find{|borrower| borrower.slug == slug}
 	end
 
 end

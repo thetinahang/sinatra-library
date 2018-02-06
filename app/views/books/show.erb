@@ -1,0 +1,19 @@
+<h1>Book Show</h1>
+
+<h1>Book details:</h1>
+<h2><%= @book.title %></h2>
+<h2><%= @book.author %></h2>
+<h2><%= @book.isbn %></h2>
+<h2><%= @book.publisher %></h2>
+
+<br><br>
+
+<form action="/books/<%=@book.id%>/edit" method="get">
+	<input type="submit" value="Edit Book">
+</form>
+
+<form action="/books/<%=@book.id%>/delete" method="post">
+	<input type="submit" value="Delete Book">
+</form>
+
+<h3><a href="/books">Home Page</a></h3>

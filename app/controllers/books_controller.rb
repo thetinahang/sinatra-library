@@ -1,11 +1,11 @@
 class BooksController < ApplicationController
 	get '/books' do
 		@books = Book.all
-		erb :"/books/books"
+		erb :"/books/index"
 	end
 
 	get '/books/new' do
-		erb :"books/create_book"
+		erb :"books/new"
 	end
 
 	post '/books' do
@@ -18,13 +18,13 @@ class BooksController < ApplicationController
 	end
 
 	get '/books/:id' do 
-		@book = Book.find(params[:id])
-		erb :"books/show_book"
+		@book = Book.find_by_id(params[:id])
+		erb :"books/show"
 	end
 
 	get '/books/:id/edit' do
-		@book = Book.find(params[:id])
-		erb :"books/edit_book"
+		@book = Book.find_by_id(params[:id])
+		erb :"books/edit"
 	end
 
 	patch '/books/:id' do
