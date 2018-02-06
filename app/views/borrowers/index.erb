@@ -1,0 +1,8 @@
+<h2>Hello!</h2>
+
+<% @borrowers.each do |borrower| %>
+	<h4>Username: <%= borrower.username %></h4>
+	<h4>Email: <%= borrower.email %></h4>
+	<h4><a href="/borrowers/<%= borrower.id %>/edit"> Edit this borrower?</a></h4>
+	<br>
+<% end %> 

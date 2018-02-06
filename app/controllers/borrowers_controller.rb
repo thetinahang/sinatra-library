@@ -19,7 +19,7 @@ class BorrowersController < ApplicationController
 	end
 
 	post '/borrowers' do
-		if params[:first_name] == "" || params[:last_name] == "" || params[:email] == ""
+		if params[:username] == "" || params[:email] == "" || params[:password] = "" 
 			redirect to "borrowers/new"
 		else
 			@borrower = Borrower.create(params[:borrower])
@@ -40,11 +40,9 @@ class BorrowersController < ApplicationController
 
 	patch '/borrowers/:id' do
 		@borrower = Borrower.find_by_id(params[:id])
-		if params[:first_name] == "" || params[:last_name] == "" || params[:email] == "" 
+		if params[:username] == "" || params[:email] == "" || params[:password] = "" 
 			redirect to "/borrowers/#{params[:id]}/edit"
 		else
-			@borrower.first_name = params[:first_name]
-			@borrower.last_name = params[:last_name]
 			@borrower.email = params[:email]
 			@borrower.save
 			redirect to "/borrowers"
