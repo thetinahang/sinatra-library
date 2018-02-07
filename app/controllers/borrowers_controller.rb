@@ -6,7 +6,7 @@ class BorrowersController < ApplicationController
 
 	get '/borrowers/signup' do
 		if logged_in?
-			flash[:message] = "You are logged in!"
+			flash[:message] = "You are already logged in!"
 			redirect "borrowers/#{current_borrower.slug}"
 		else 
 			erb :"borrowers/new"
@@ -30,30 +30,7 @@ class BorrowersController < ApplicationController
 
 	get '/borrowers/:id' do 
 		@borrower = Borrower.find(params[:id])
-		erb :"borrowers/show_borrower"
-	end
-
-	get '/borrowers/:id/edit' do
-		@borrower = Borrower.find(params[:id])
-		erb :"borrowers/edit_borrower"
-	end
-
-	patch '/borrowers/:id' do
-		@borrower = Borrower.find_by_id(params[:id])
-		if params[:username] == "" || params[:email] == "" || params[:password] = "" 
-			redirect to "/borrowers/#{params[:id]}/edit"
-		else
-			@borrower.email = params[:email]
-			@borrower.save
-			redirect to "/borrowers"
-		end
-	end
-
-	post '/borrowers/:id/delete' do
-		borrower = Borrower.find(params[:id])
-		borrower.delete
-		borrower.save
-		redirect to "/borrowers"
+		erb :"borrowers/show"
 	end
 
 end
